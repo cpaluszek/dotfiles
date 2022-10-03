@@ -15,10 +15,15 @@ set noerrorbells
 
 set scrolloff=8
 
-set colorcolumn=100
+set colorcolumn=80
 set signcolumn=yes
 
+
 call plug#begin()
+" 42
+Plug '42Paris/42header'
+
+" Finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope.nvim'
@@ -92,3 +97,10 @@ let g:airline_powerline_fonts = 1
 "      let g:airline_symbols.linenr = ''
 "
 "      inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+"
+
+" --- 42 HEADER ---
+let g:user42 = "test_user"
+let g:mail42 = "test@student.42.ft"
+
+nnoremap <F1> :Stdheader<CR>
