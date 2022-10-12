@@ -30,6 +30,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'folke/todo-comments.nvim'
 
 Plug 'https://github.com/preservim/nerdtree'		" NerdTree
 Plug 'https://github.com/ryanoasis/vim-devicons'	" Developer Icons
@@ -38,6 +39,7 @@ Plug 'https://github.com/tc50cal/vim-terminal'		" Vim Terminal
 Plug 'https://github.com/preservim/tagbar'			" Tagbar for code navigation
 
 Plug 'https://github.com/vim-airline/vim-airline'	" Status bar
+Plug 'vim-airline/vim-airline-themes'
 
 Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' } " Auto Completion
 Plug 'jiangmiao/auto-pairs'
@@ -82,9 +84,9 @@ set signcolumn=yes
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+	inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " GoTo code navigation.
@@ -126,11 +128,6 @@ nmap <F8> :TagbarToggle<CR>
 
 set completeopt-=preview " For No Previews
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 let g:NERDTreeDirArrowExpandable="+"
 	let g:NERDTreeDirArrowCollapsible="~"
@@ -145,6 +142,7 @@ let g:NERDTreeDirArrowExpandable="+"
 "
 " air-line
 let g:airline_powerline_fonts = 1
+" let g:airline_theme = 'gruvbox'
 "
 "  if !exists('g:airline_symbols')
 "      let g:airline_symbols = {}
@@ -166,3 +164,21 @@ let g:user42 = "test_user"
 let g:mail42 = "test@student.42.ft"
 
 nnoremap <F1> :Stdheader<CR>
+
+" --- TELESCOPE ---
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>td <cmd>TodoTelescope<cr>
+
+
+" --- COMMENTS ---
+lua << EOF
+  require("todo-comments").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
