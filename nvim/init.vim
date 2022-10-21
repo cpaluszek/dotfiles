@@ -38,8 +38,9 @@ Plug 'https://github.com/tc50cal/vim-terminal'		" Vim Terminal
 
 Plug 'https://github.com/preservim/tagbar'			" Tagbar for code navigation
 
-Plug 'https://github.com/vim-airline/vim-airline'	" Status bar
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
+"Plug 'https://github.com/vim-airline/vim-airline'	" Status bar
+"Plug 'vim-airline/vim-airline-themes'
 
 Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' } " Auto Completion
 Plug 'jiangmiao/auto-pairs'
@@ -53,17 +54,19 @@ Plug 'https://github.com/lifepillar/pgsql.vim'		" PSQL Pluging needs :SQLSetType
 
 " Color themes
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ayu-theme/ayu-vim' 
 Plug 'gruvbox-community/gruvbox'
-Plug 'nvim-lualine/lualine.nvim'
 
 call plug#end()
 
 "let ayucolor="mirage"
-colorscheme gruvbox
+" colorscheme gruvbox
+let g:catppuccin_flavour = "mocha"
+colorscheme catppuccin
 
 set termguicolors
-set background=dark
+" set background=dark
 highlight Normal guibg=none
 
 nnoremap <C-f> :NERDTreeFocus<CR>
@@ -141,7 +144,7 @@ let g:NERDTreeDirArrowExpandable="+"
 "  " :CocCommand snippets.edit... FOR EACH FILE TYPE
 "
 " air-line
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'gruvbox'
 "
 "  if !exists('g:airline_symbols')
@@ -176,9 +179,14 @@ nnoremap <leader>td <cmd>TodoTelescope<cr>
 
 " --- COMMENTS ---
 lua << EOF
-  require("todo-comments").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
+	require("todo-comments").setup {
+		-- your configuration comes here
+		-- or leave it empty to use the default settings
+		-- refer to the configuration section below
+	}
+	require('lualine').setup {
+		options = {
+			theme = "catppuccin"
+		}
+	}
 EOF
