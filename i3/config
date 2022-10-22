@@ -206,6 +206,9 @@ for_window [class="Brave"] move container to workspace $ws2
 for_window [class="obsidian"] move container to workspace $ws3
 for_window [class="discord"] move container to workspace $ws4
 
+# Touch to click
+exec xinput "ELAN1300:00 04F3:3059 Touchpad" "libinput Tapping Enabled" 1
+
 # Picom
 exec_always picom -b --experimental-backend --config '/home/noon/.config/picom/picom.conf'
 
