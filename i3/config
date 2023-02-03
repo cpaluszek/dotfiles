@@ -10,7 +10,7 @@ font pango:JetBrainsMono Nerd Font 10
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- ./home/noon/.config/i3/lock.sh 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -i ~/Pictures/Wallpapers/catpuccin_dark-cat.png
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -i ~/Pictures/Wallpapers/catpuccin_dark-cat.png
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -94,13 +94,6 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-# set $ws1 "  "
-# set $ws2 "  "
-# set $ws3 "  "
-# set $ws4 " ﭮ "
-# set $ws5 "  "
-# set $ws6 "  "
-# set $ws7 "  "
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -203,6 +196,3 @@ for_window [class="discord"] move container to workspace $ws4
 
 # Touch to click
 exec --no-startup-id xinput set-prop "ELAN1300:00 04F3:3059 Touchpad" "libinput Tapping Enabled" 1
-
-# Picom
-#exec_always --no-startup-id picom -b --experimental-backend --config '/home/noon/.config/picom/picom.conf'$
