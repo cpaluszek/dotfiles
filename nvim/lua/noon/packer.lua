@@ -7,6 +7,13 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
+	use({
+		'hardyrafael17/norminette42.nvim',
+		require("norminette").setup({
+			runOnSave = true,     -- Check for errors after save
+			active = true,        -- Optional, can be set to false to deactivate plugin
+		})
+	})
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		-- or                            , branch = '0.1.x',
