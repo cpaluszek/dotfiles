@@ -130,6 +130,11 @@ _G.packer_plugins = {
     path = "/home/noon/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/noon/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/noon/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -161,9 +166,10 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/noon/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/nvim-tree/nvim-web-devicons"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/noon/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -209,14 +215,14 @@ time([[Defining packer_plugins]], false)
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
 -- Config for: todo-comments.nvim
 time([[Config for todo-comments.nvim]], true)
 try_loadstring("\27LJ\2\n�\4\0\0\6\0\27\0#6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\25\0005\3\6\0005\4\3\0005\5\4\0=\5\5\4=\4\a\0035\4\b\0005\5\t\0=\5\5\4=\4\n\0035\4\v\0=\4\f\0035\4\r\0005\5\14\0=\5\5\4=\4\15\0035\4\16\0005\5\17\0=\5\5\4=\4\18\0035\4\19\0005\5\20\0=\5\5\4=\4\21\0035\4\22\0005\5\23\0=\5\5\4=\4\24\3=\3\26\2B\0\2\1K\0\1\0\rkeywords\1\0\0\tTEST\1\4\0\0\fTESTING\vPASSED\vFAILED\1\0\2\ncolor\ttest\ticon\t⏲ \tNOTE\1\4\0\0\tINFO\tInfo\tNote\1\0\2\ncolor\thint\ticon\t \tPERF\1\a\0\0\nOPTIM\16PERFORMANCE\rOPTIMIZE\tOpti\nOptim\rOptimize\1\0\1\ticon\t \tWARN\1\5\0\0\fWARNING\bXXX\tWarn\fWarning\1\0\2\ncolor\fwarning\ticon\t \tHACK\1\0\2\ncolor\fwarning\ticon\t \tTODO\1\2\0\0\tTodo\1\0\2\ncolor\tinfo\ticon\t \bFIX\1\0\0\balt\1\a\0\0\nFIXME\bBUG\nFIXIT\nISSUE\bFix\bBug\1\0\2\ncolor\nerror\ticon\t \nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
 time([[Config for todo-comments.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

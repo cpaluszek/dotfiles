@@ -20,8 +20,31 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 	use({
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		require("lualine").setup({
+			options = {
+				extensions = { "fzf", "quickfix" },
+				theme = "catppuccin"
+			}
+		})
+	})
+	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
+		require("catppuccin").setup({
+			flavour = "macchiato",
+			integrations = {
+				cmp = true,
+				native_lsp = {
+					enabled = true;
+				},
+				telescope = true,
+				treesitter = true,
+			},
+			term_colors = true,
+			transparent_background = true,
+		})
 	})
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('theprimeagen/harpoon')
