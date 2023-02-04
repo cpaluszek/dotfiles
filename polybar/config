@@ -1,0 +1,281 @@
+;==========================================================
+;
+; THIS IS AN EXAMPLE CONFIGURATION FILE!
+; IT IS NOT SUPPOSED TO WORK OUT OF THE BOX SINCE IS CONTAINS
+; SETTINGS THAT ARE SPECIFIC TO THE MACHINE WHICH WAS USED
+; TO GENERATE IT.
+; Please refer to the web documentation hosted at:
+; https://github.com/polybar/polybar#configuration
+; and
+; https://github.com/polybar/polybar/wiki/Configuration
+; if you want to automatically generate one for you.
+;
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+base = #24273a
+mantle = #1e2030
+crust = #181926
+
+text = #cad3f5
+subtext0 = #a5adcb
+subtext1 = #b8c0e0
+
+surface0 = #363a4f
+surface1 = #494d64
+surface2 = #5b6078
+
+overlay0 = #6e738d
+overlay1 = #8087a2
+overlay2 = #939ab7
+
+blue = #8aadf4
+lavender = #b7bdf8
+sapphire = #7dc4e4
+sky = #91d7e3
+teal = #8bd5ca
+green = #a6da95
+yellow = #eed49f
+peach = #f5a97f
+maroon = #ee99a0
+red = #ed8796
+mauve = #c6a0f6
+pink = #f5bde6
+flamingo = #f0c6c6
+rosewater = #f4dbd6
+
+transparent = #FF00000
+
+[bar/example]
+width = 100%
+height = 26pt
+radius = 0
+
+background = ${colors.mantle}
+foreground = ${colors.foreground}
+
+line-size = 2pt
+line-color = #f00
+
+border-size = 0pt
+border-color = ${colors.mantle} 
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+separator = 
+font-0 = JetBrainsMono Nerd Font:size=12;1
+font-1 = JetBrainsMono Nerd Font:size=8;1
+font-2 = JetBrainsMono Nerd Font:size=10;1
+
+modules-left = i3 xwindow
+modules-center = date
+modules-right = filesystem memory cpu pulseaudio backlight battery wlan
+
+tray-position = right
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+enable-ipc = true
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted = %{F#F0C674}%{F-} %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+
+[module/i3]
+type = internal/i3
+format = <label-state><label-mode>
+index-sort = true
+wrapping-scroll = false
+
+ws-icon-0 = "1;%{T1}  %{T-}"
+ws-icon-1 = "2;%{T1}  %{T-}"
+ws-icon-2 = "3;%{T1}  %{T-}"
+ws-icon-3 = "4;%{T1} ﭮ %{T-}"
+ws-icon-4 = "5;%{T1}  %{T-}"
+ws-icon-5 = "5;%{T1}  %{T-}"
+ws-icon-6 = "7;%{T1}  %{T-}"
+ws-icon-default =
+
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.base}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.base}
+label-focused-underline= ${colors.lavender}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+label-separator = |
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <label>
+format-underline = ${colors.blue}
+label = %percentage%%
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.lavender}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.red}
+format-underline = #4bffdc
+label = %percentage_used:2%%
+
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+
+[module/wlan]
+inherit = network-base
+interface-type = wireless
+label-connected = %{F#fafdff}%{F-}  
+label-disconnected = 睊 
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %I:%M %p
+label =  %{T3}%date%
+label-foreground = ${colors.text}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.green}
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-muted = ﱝ
+label-muted-foreground = ${colors.disabled}
+
+[module/battery]
+poll-interval = 2
+type = internal/battery
+battery = BAT0
+adapter = AC0
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.green}
+format-discharging-foreground = ${colors.sapphire}
+format-discharging = <ramp-capacity>  <label-discharging>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = 
+label-full-foreground = ${colors.green}
+label-low = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+bar-capacity-width = 10
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-framerate = 500
+animation-low-0 = !
+animation-low-1 = 
+animation-low-framerate = 200
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
