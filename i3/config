@@ -10,7 +10,7 @@ font pango:JetBrainsMono Nerd Font 10
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id xss-lock --transfer-sleep-lock -- ./home/noon/.config/i3/lock.sh 
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -i ~/Pictures/wallpapers/catppuccin_sky.png &
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -i /home/noon/Pictures/wallpapers/catppuccin_sky.png &
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -34,7 +34,7 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec bash $HOME/.config/rofi/bin/launcher
-bindsym $mod+Shift+q exec bash $HOME/.config/rofi/bin/powermenu
+bindsym $mod+Shift+q exec bash $HOME/.config/rofi/scripts/powermenu_t6
 bindsym $mod+d exec --no-startup-id rofi -show drun 
 
 # change focus
