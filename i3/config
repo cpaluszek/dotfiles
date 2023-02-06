@@ -175,6 +175,7 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # Print
+exec_always --no-startup-id flameshot
 bindsym Print exec flameshot gui
 
 # Lock
