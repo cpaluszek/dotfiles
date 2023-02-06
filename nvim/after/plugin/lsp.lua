@@ -14,7 +14,12 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 lsp.set_preferences({
-	sign_icons = { }
+	sign_icons = {
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = ''
+  }
 })
 
 lsp.setup_nvim_cmp({
@@ -38,7 +43,7 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 -- (Optional) Configure lua language server for neovim
--- lsp.nvim_workspace()
+lsp.nvim_workspace()
 
 lsp.setup()
 

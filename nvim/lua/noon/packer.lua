@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
 		'hardyrafael17/norminette42.nvim',
 		require("norminette").setup({
 			runOnSave = true,     -- Check for errors after save
-			active = true,        -- Optional, can be set to false to deactivate plugin
+			active = false,        -- Optional, can be set to false to deactivate plugin
 		})
 	})
 	use {
@@ -22,17 +22,17 @@ return require('packer').startup(function(use)
 	use({
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		require("lualine").setup({
+		--[[ require("lualine").setup({
 			options = {
 				extensions = { "fzf", "quickfix" },
 				theme = "catppuccin"
 			}
-		})
+		}) ]]
 	})
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
-		require("catppuccin").setup({
+		--[[ require("catppuccin").setup({
 			flavour = "macchiato",
 			integrations = {
 				cmp = true,
@@ -44,7 +44,7 @@ return require('packer').startup(function(use)
 			},
 			term_colors = true,
 			transparent_background = true,
-		})
+		}) ]]
 	})
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('theprimeagen/harpoon')
@@ -70,7 +70,7 @@ return require('packer').startup(function(use)
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
-		config = function()
+		--[[ config = function()
 			require("todo-comments").setup {
 				keywords = {
 					FIX = {
@@ -87,7 +87,7 @@ return require('packer').startup(function(use)
 					TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
 				},
 			}
-		end
+		end ]]
 	})
 	use {
 		'VonHeikemen/lsp-zero.nvim',
