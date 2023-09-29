@@ -25,19 +25,6 @@ return require('packer').startup(function(use)
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
-		--[[ require("catppuccin").setup({
-			flavour = "macchiato",
-			integrations = {
-				cmp = true,
-				native_lsp = {
-					enabled = true;
-				},
-				telescope = true,
-				treesitter = true,
-			},
-			term_colors = true,
-			transparent_background = true,
-		}) ]]
 	})
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('theprimeagen/harpoon')
@@ -63,25 +50,16 @@ return require('packer').startup(function(use)
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
-		--[[ config = function()
-			require("todo-comments").setup {
-				keywords = {
-					FIX = {
-						icon = " ", -- icon used for the sign, and in search results
-						color = "error", -- can be a hex color, or a named color (see below)
-						alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "Fix", "Bug" }, -- a set of other keywords that all map to this FIX keywords
-						-- signs = false, -- configure signs for some keywords individually
-					},
-					TODO = { icon = " ", color = "info", alt = { "Todo" } },
-					HACK = { icon = " ", color = "warning" },
-					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "Warn", "Warning" } },
-					PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "Opti", "Optim", "Optimize" } },
-					NOTE = { icon = " ", color = "hint", alt = { "INFO", "Info", "Note" } },
-					TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-				},
-			}
-		end ]]
 	})
+	use {
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		requires = { 
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		}
+	}
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v1.x',
