@@ -59,6 +59,9 @@ return require('packer').startup(function(use)
 			"MunifTanjim/nui.nvim",
 		}
 	}
+	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+		require("toggleterm").setup()
+	end}
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v1.x',
