@@ -4,7 +4,6 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 	use 'nvim-tree/nvim-web-devicons'
 	use {
@@ -39,11 +38,7 @@ return require('packer').startup(function(use)
 		"folke/trouble.nvim",
 		requires = "nvim-tree/nvim-web-devicons",
 		config = function()
-			require("trouble").setup {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			}
+			require("trouble").setup {}
 		end
 	}
 	use({
@@ -53,7 +48,7 @@ return require('packer').startup(function(use)
 	use {
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
-		requires = { 
+		requires = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
