@@ -25,10 +25,6 @@ lsp.set_preferences({
   }
 })
 
--- lsp.setup_nvim_cmp({
--- 	mapping = cmp_mappings
--- })
-
 lsp.on_attach(function(client, bufnr)
 		print("help")
 	local opts = {buffer = bufnr, remap = false}
