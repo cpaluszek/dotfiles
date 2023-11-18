@@ -42,6 +42,15 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+require('lspconfig').lua_ls.setup({})
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {},
+    handlers = {
+        lsp.default_setup,
+    },
+})
+
 
 vim.diagnostic.config({
 	virtual_text = true
