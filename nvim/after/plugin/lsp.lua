@@ -5,12 +5,15 @@ lsp.preset('recommended')
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<C-y>'] = cmp.mapping.confirm({ select = true }),
-	['<C-Space>'] = cmp.mapping.complete(),
-	['<Tab>'] = cmp.mapping.confirm({ selectr = true }),
+
+cmp.setup({
+    mapping = cmp.mapping.preset.insert({
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<Tab>'] = cmp.mapping.confirm({ selectr = true }),
+    })
 })
 
 lsp.set_preferences({
@@ -22,9 +25,9 @@ lsp.set_preferences({
   }
 })
 
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings
-})
+-- lsp.setup_nvim_cmp({
+-- 	mapping = cmp_mappings
+-- })
 
 lsp.on_attach(function(client, bufnr)
 		print("help")
@@ -41,9 +44,6 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 	vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
-
--- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
 
 lsp.setup()
 
