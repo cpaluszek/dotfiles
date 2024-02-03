@@ -1,6 +1,7 @@
 return {
     -- TODO: fix symbols
-
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
         vim.keymap.set("n", "<leader>td", vim.cmd.TodoTelescope)
         vim.keymap.set("n", "<leader>tt", vim.cmd.TodoTrouble)
@@ -23,6 +24,5 @@ return {
                 TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
             },
         }
-
     end
 }

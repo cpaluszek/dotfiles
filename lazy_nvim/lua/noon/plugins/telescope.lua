@@ -21,11 +21,11 @@ return {
         -- search for word under cursor
         vim.keymap.set('n', '<leader>fws', function()
             local word = vim.fn.expand("<cword>")
-            builtin.grep_string({ search = word )
+            builtin.grep_string({ search = word })
         end)
         vim.keymap.set('n', '<leader>fWs', function()
             local word = vim.fn.expand("<cWORD>")
-            builtin.grep_string({ search = word )
+            builtin.grep_string({ search = word })
         end)
         vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
     end

@@ -14,6 +14,14 @@ return {
     },
 
     config = function()
+        local cmp = require('cmp')
+        local cmp_lsp = require("cmp_nvim_lsp")
+        local capabilities = vim.tbl_deep_extend(
+            "force",
+            {},
+            vim.lsp.protocol.make_client_capabilities(),
+            cmp_lsp.default_capabilities())
+
         require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
@@ -23,17 +31,20 @@ return {
             },
             handlers = {
                 function (server_name)
-                    require("lspconfig")[server_name].setup {}
-                end
+                    require("lspconfig")[server_name].setup {
+                        capabilities = capabilities
+                    }
+                end,
 
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     -- set 'vim' as global
                     lspconfig.lua_ls.setup {
+                        capabilities = capabilities,
                         settings = {
                             Lua = {
                                 diagnostics = {
-                                    globals = { "vim" },
+                                    globals = { "vim", "it", "describe", "before_each", "after_each" },
                                 },
                             },
                         }
@@ -42,7 +53,6 @@ return {
             },
         })
 
-        local cmp = require("cmp")
         local cmp_select = {behavior = cmp.SelectBehavior.Select} 
 
         cmp.setup({
@@ -56,7 +66,7 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
-                { name = 'luasnip' },
+                -- { name = 'luasnip' },
             }, {
                 { name = 'buffer' },
             })
@@ -72,7 +82,7 @@ return {
                 header = "",
                 prefix = "",
             },
-        }),
+        })
         -- vim.diagnostic.config({ virtual_text = true }),
     end
 }

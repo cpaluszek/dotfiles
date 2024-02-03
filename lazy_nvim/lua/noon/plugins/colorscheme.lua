@@ -12,12 +12,9 @@ return {
                     native_lsp = {
                         enabled = true;
                     },
-                    nvim-lspconfig = {
-                        enabled = true;
-                    },
                     telescope = {
                         enabled = true,
-                    }
+                    },
                     treesitter = true,
                     harpoon = true,
                     -- TODO: add which-key
