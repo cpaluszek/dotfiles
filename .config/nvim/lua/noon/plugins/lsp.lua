@@ -9,7 +9,7 @@ return {
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
-        -- NOTE: keep fidget?
+        "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim"
     },
 
@@ -25,7 +25,7 @@ return {
         require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { 
+            ensure_installed = {
                 "lua_ls",
                 "rust_analyzer"
             },
@@ -43,8 +43,9 @@ return {
                         capabilities = capabilities,
                         settings = {
                             Lua = {
+                                runtime = { verison = "Lua 5.1" },
                                 diagnostics = {
-                                    globals = { "vim", "it", "describe", "before_each", "after_each" },
+                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
                                 },
                             },
                         }
@@ -53,9 +54,14 @@ return {
             },
         })
 
-        local cmp_select = {behavior = cmp.SelectBehavior.Select} 
+        local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
         cmp.setup({
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body)
+                end,
+            },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -66,7 +72,7 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
-                -- { name = 'luasnip' },
+                { name = 'luasnip' },
             }, {
                 { name = 'buffer' },
             })
