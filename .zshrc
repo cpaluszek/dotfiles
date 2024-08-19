@@ -65,7 +65,12 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias ls="ls --color"
 alias vim="nvim"
+alias obsi="$HOME/AppImage/Obsidian-1.6.7.AppImage --appimage-extract-and-run &"
+
+export PATH="$PATH:$HOME/.fzf/bin:$HOME/.local/bin"
 
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
