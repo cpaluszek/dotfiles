@@ -1,4 +1,3 @@
--- TODO: compare with toggleterm
 return {
   "numToStr/FTerm.nvim",
   enabled = true,
