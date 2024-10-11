@@ -4,9 +4,9 @@ return {
         -- TODO: check for extensions
         require("lualine").setup({
             options = {
-                extension = { "quickfix", "fugitive", "lazy", "mason", "quickfix", "trouble" , "toggleterm"},
+                extension = { "quickfix", "fugitive", "lazy", "mason", "quickfix", "trouble"},
                 theme = "catppuccin"
             }
         })
-    end 
+    end
 }

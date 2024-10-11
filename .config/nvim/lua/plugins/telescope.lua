@@ -1,7 +1,9 @@
 return {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.5",
+    tag = "0.1.8",
     dependencies = { 'nvim-lua/plenary.nvim' },
+
+    -- TODO: check https://github.com/Christopher2K/dotfiles/blob/main/dot_config/nvim/lua/plugins/telescope.lua
 
     config = function()
         require("telescope").setup({})

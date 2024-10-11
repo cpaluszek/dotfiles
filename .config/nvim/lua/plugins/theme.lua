@@ -1,10 +1,10 @@
-return { 
-    { 
+return {
+    {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
 
-        config = function() 
+        config = function()
             require("catppuccin").setup({
                 flavour = "mocha",
                 integrations  = {
@@ -17,22 +17,32 @@ return {
                     },
                     treesitter = true,
                     harpoon = true,
-                    -- TODO: add which-key
                     which_key = true,
                     fidget = true,
+                    gitsigns = true,
+                    lsp_trouble = true,
+                    neotree = true,
+                    mini = {
+                        enabled = true,
+                        indentscope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
+                    },
                 },
                 term_colors = true,
                 transparent_background = true,
             })
-            function ColorMyPencils(color)
-                color = color or "catppuccin"
-                vim.cmd.colorscheme(color)
-                vim.api.nvim_set_hl(0, "Normal", {bg = "none" })
-                vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none" })
-            end
-
-            ColorMyPencils("catppuccin-mocha")
+            vim.cmd("colorscheme catppuccin")
         end
     },
-    -- "folke/tokyonight.nvim",
+    {
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = function()
+            local gruvbox = require("gruvbox")
+            gruvbox.setup({})
+        end
+    },
+    {
+        "folke/tokyonight.nvim",
+        priority = 1000,
+    }
 }

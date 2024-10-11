@@ -4,13 +4,9 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "williamboman/mason.nvim",
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-        "j-hui/fidget.nvim"
+        "j-hui/fidget.nvim" -- UI notifcations
     },
 
     config = function()
@@ -55,20 +51,39 @@ return {
         })
 
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        local luasnip = require('luasnip')
 
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
+                    luasnip.lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
+                ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                -- NOTE: keep this 2 below?
+                ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 ['<C-Space>'] = cmp.mapping.complete(),
-                ['<Tab>'] = cmp.mapping.confirm({ selectr = true }),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
@@ -89,6 +104,10 @@ return {
                 prefix = "",
             },
         })
-        -- vim.diagnostic.config({ virtual_text = true }),
+
+        -- Global key mapping
+        vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "open diagnostic popup" })
+        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
     end
 }
