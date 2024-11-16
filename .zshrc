@@ -64,11 +64,12 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls="ls --color"
+alias lg="lazygit"
 alias vim="nvim"
 export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
 
 # Shell integrations
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
