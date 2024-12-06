@@ -73,3 +73,9 @@ source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Launch tmux
+if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && command -v tmux &>/dev/null; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
+
