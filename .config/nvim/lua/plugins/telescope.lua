@@ -6,7 +6,20 @@ return {
     -- TODO: check https://github.com/Christopher2K/dotfiles/blob/main/dot_config/nvim/lua/plugins/telescope.lua
 
     config = function()
-        require("telescope").setup({})
+        local open_with_trouble = require("trouble.sources.telescope").open
+
+        -- Use this to add more results without clearing the trouble list
+        -- local add_to_trouble = require("trouble.sources.telescope").add
+        require("telescope").setup({
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-x>"] = open_with_trouble,
+                    },
+                    n = { ["<C-x>"] = open_with_trouble },
+                },
+            },
+        })
 
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})

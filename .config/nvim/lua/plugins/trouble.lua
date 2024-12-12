@@ -1,33 +1,38 @@
 return {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-
-    config = function()
-
-        vim.keymap.set("n", "<leader>xx", function()
-            require("trouble").toggle()
-        end)
-        vim.keymap.set("n", "[d", function()
-            require("trouble").next({skip_groups = true, jump = true})
-        end)
-        vim.keymap.set("n", "]d", function()
-            require("trouble").previous({skip_groups = true, jump = true})
-        end)
-        vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
-        {silent = true, noremap = true}
-        )
-        vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
-        {silent = true, noremap = true}
-        )
-        vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
-        {silent = true, noremap = true}
-        )
-        vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
-        {silent = true, noremap = true}
-        )
-        vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-        {silent = true, noremap = true}
-        )
-
-    end
+  "folke/trouble.nvim",
+  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  cmd = "Trouble",
+  keys = {
+    {
+      "<leader>xx",
+      "<cmd>Trouble diagnostics toggle focus<cr>",
+      desc = "Diagnostics (Trouble)",
+    },
+    {
+      "<leader>xX",
+      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+      desc = "Buffer Diagnostics (Trouble)",
+    },
+    {
+      "<leader>cs",
+      "<cmd>Trouble symbols toggle focus=false<cr>",
+      desc = "Symbols (Trouble)",
+    },
+    {
+      "<leader>cl",
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      desc = "LSP Definitions / references / ... (Trouble)",
+    },
+    {
+      "<leader>xl",
+      "<cmd>Trouble loclist toggle<cr>",
+      desc = "Location List (Trouble)",
+    },
+    {
+      "<leader>xq",
+      "<cmd>Trouble qflist toggle<cr>",
+      desc = "Quickfix List (Trouble)",
+    },
+  },
 }
+

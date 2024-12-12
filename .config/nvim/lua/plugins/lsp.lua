@@ -89,8 +89,8 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
             }, {
-                { name = 'buffer' },
-            })
+                    { name = 'buffer' },
+                })
         })
 
         vim.diagnostic.config({
@@ -109,8 +109,8 @@ return {
         vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "open diagnostic popup" })
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
-        
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help" })
 
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
