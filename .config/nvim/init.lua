@@ -22,7 +22,7 @@ require("lazy").setup({
     spec = {
         { import = "plugins" },
     },
-    lockfile = vim.fn.stdpath("config") .. "../lazy-lock.json",
+    lockfile = vim.fn.stdpath("config") .. "/../lazy-lock.json",
 })
 
 local keys = require("keys")
