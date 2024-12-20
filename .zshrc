@@ -25,10 +25,6 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-# Keybindings
-bindkey '^p' history_search_backward
-bindkey '^n' history_search_forward
-
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -54,6 +50,7 @@ alias ls="ls --color"
 alias lg="lazygit"
 alias vim="nvim"
 export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
+alias bat="batcat"
 
 # Shell integrations
 source <(fzf --zsh)
