@@ -46,9 +46,20 @@ return {
                             },
                         }
                     }
+                end,
+                ["gopls"] = function()
+                require('lspconfig').gopls.setup{
+                    capabilities = capabilities,
+                    settings = {
+                        gopls = {
+                            gofumpt = true;
+                        }
+                    }
+                }
                 end
             },
         })
+
 
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
         local luasnip = require('luasnip')
