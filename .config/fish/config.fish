@@ -6,6 +6,16 @@ if status is-interactive
     alias lg="lazygit"
     alias vim="nvim"
 
+    abbr -a lg lazygit
+    abbr -a vim nvim
+
+    abbr -a gcl git clone
+    abbr -a gst git status
+    # Custom functions
+    abbr -a gsta git_status_all
+    abbr -a gpa git_pull_all
+    abbr -a gsa git_switch_all
+
     set fish_greeting
 
     export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
