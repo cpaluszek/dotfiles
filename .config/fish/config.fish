@@ -16,6 +16,11 @@ if status is-interactive
     abbr -a gpa git_pull_all
     abbr -a gsa git_switch_all
 
+    abbr -a cdl cdsymlink
+
+    abbr -a pipelines "bash ~/projects/DevOps/tools/check-pipelines"
+    #######################
+
     set fish_greeting
 
     export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
@@ -25,5 +30,6 @@ if status is-interactive
     zoxide init fish | source
     fzf --fish | source
     starship init fish | source
+    source "$HOME/.cargo/env.fish"
 end
 

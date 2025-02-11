@@ -20,8 +20,9 @@ function git_switch_all
 
     set repo_paths (cat ~/repos.txt)
     for repo in $repo_paths
-        echo -n "$repo: "
-        cd $repo
+        set expanded_path (string replace '~' (echo $HOME) $repo)
+        echo -n "$expanded_path: "
+        cd $expanded_path
 
         if test $argv[1] = '-b'
             echo $color_switch"Creating and switching to branch '$branch_name'" $color_reset
