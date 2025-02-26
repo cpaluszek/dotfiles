@@ -8,15 +8,22 @@ return {
     },
     config = function()
         vim.keymap.set("n", "<C-b>", "<Cmd>Neotree toggle<CR>", { desc = "Toggle Neotree" })
-    end,
-    opts = {
-        enable_diagnostics = false,
-        enable_git_status = false,
-        filesystem = {
-            follow_current_file = {
-                enabled = true,
-                leave_dirs_open = false,
+
+        require("neo-tree").setup({
+            close_if_last_window = true,
+            hijack_netrw_behavior="open_current",
+            enable_diagnostics = true,
+            enable_git_status = true,
+            filesystem = {
+                follow_current_file = {
+                    enabled = true,
+                    leave_dirs_open = false,
+                },
             },
-        },
-    },
+            window = {
+                position = "current",
+            }
+        })
+
+    end,
 }
