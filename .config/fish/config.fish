@@ -25,11 +25,12 @@ if status is-interactive
 
     export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
     export PATH="$PATH:/usr/local/go/bin"
+    export PATH="$PATH:/opt/homebrew/bin"
 
     # Integrations
     zoxide init fish | source
     fzf --fish | source
     starship init fish | source
-    source "$HOME/.cargo/env.fish"
+    # source "$HOME/.cargo/env.fish"
 end
 
