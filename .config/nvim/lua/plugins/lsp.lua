@@ -46,9 +46,20 @@ return {
                             },
                         }
                     }
+                end,
+                ["gopls"] = function()
+                require('lspconfig').gopls.setup{
+                    capabilities = capabilities,
+                    settings = {
+                        gopls = {
+                            gofumpt = true;
+                        }
+                    }
+                }
                 end
             },
         })
+
 
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
         local luasnip = require('luasnip')
@@ -89,8 +100,8 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
             }, {
-                { name = 'buffer' },
-            })
+                    { name = 'buffer' },
+                })
         })
 
         vim.diagnostic.config({
@@ -109,5 +120,19 @@ return {
         vim.keymap.set("n", "ge", vim.diagnostic.open_float, { desc = "open diagnostic popup" })
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help" })
+
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename" })
+        vim.keymap.set("n", "<leader>wl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, { desc = "List workspace folders" })
+
+        vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, { desc = "List workspace symbols" })
+        vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Check references" })
     end
 }

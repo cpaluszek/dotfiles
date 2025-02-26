@@ -30,19 +30,78 @@ return {
                 term_colors = true,
                 transparent_background = true,
             })
-            vim.cmd("colorscheme catppuccin")
         end
+    },
+    {
+        "folke/tokyonight.nvim",
+        priority = 1000,
+        opts = {
+            transparent = true,
+            styles = {
+                sidebars = "transparent",
+                floats = "transparent",
+            },
+        },
+    },
+    {
+        "neanias/everforest-nvim",
+        version = false,
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("everforest").setup({
+                background = "medium",
+            })
+        end,
     },
     {
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
         config = function()
             local gruvbox = require("gruvbox")
-            gruvbox.setup({})
+            gruvbox.setup({
+                contrast = "medium",
+            })
+            vim.cmd("colorscheme gruvbox")
         end
     },
     {
-        "folke/tokyonight.nvim",
-        priority = 1000,
+        "zaldih/themery.nvim",
+        lazy = false,
+        config = function()
+            require("themery").setup({
+                themes = {
+                    {
+                        name = "Catppuccin",
+                        colorscheme = "catppuccin-mocha",
+                        before = [[
+                          vim.opt.background = "dark"
+                        ]],
+                    },
+                    {
+                        name = "Tokyonight",
+                        colorscheme = "tokyonight",
+                        before = [[
+                          vim.opt.background = "dark"
+                        ]],
+                    },
+                    {
+                        name = "Gruvbox light",
+                        colorscheme = "gruvbox",
+                        before = [[
+                          vim.opt.background = "light"
+                        ]],
+                    },
+                    {
+                        name = "Everforest light",
+                        colorscheme = "everforest",
+                        before = [[
+                          vim.opt.background = "light"
+                        ]],
+                    }
+                },
+                livePreview = true,
+            })
+        end
     }
 }

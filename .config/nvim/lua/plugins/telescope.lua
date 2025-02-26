@@ -6,14 +6,32 @@ return {
     -- TODO: check https://github.com/Christopher2K/dotfiles/blob/main/dot_config/nvim/lua/plugins/telescope.lua
 
     config = function()
-        require("telescope").setup({})
+        local open_with_trouble = require("trouble.sources.telescope").open
+
+        -- Use this to add more results without clearing the trouble list
+        -- local add_to_trouble = require("trouble.sources.telescope").add
+        require("telescope").setup({
+            defaults = {
+                mappings = {
+                    i = {
+                        ["<C-x>"] = open_with_trouble,
+                    },
+                    n = { ["<C-x>"] = open_with_trouble },
+                },
+            },
+            pickers = {
+                find_files = {
+                    find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                },
+            },
+        })
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc="Find files" })
-        vim.keymap.set('n', '<leader>fh', function()
+        vim.keymap.set('n', '<leader>ff', function()
             builtin.find_files( { hidden = true} )
-        end, { desc="Find files + hidden" })
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {  desc="Find buffers" })
+        end, { desc="Telescope find files" })
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc='Telescope find buffers'})
+
 
         -- Note: useful?
         -- git files search
