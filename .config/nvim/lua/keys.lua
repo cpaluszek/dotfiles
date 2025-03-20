@@ -2,10 +2,10 @@ local keys = {}
 
 function keys.init()
     -- Disable arrow keys
-    vim.keymap.set("n", "<up>", "<nop>", { silent = true })
-    vim.keymap.set("n", "<down>", "<nop>", { silent = true })
-    vim.keymap.set("n", "<left>", "<nop>", { silent = true })
-    vim.keymap.set("n", "<right>", "<nop>", { silent = true })
+    -- vim.keymap.set("n", "<up>", "<nop>", { silent = true })
+    -- vim.keymap.set("n", "<down>", "<nop>", { silent = true })
+    -- vim.keymap.set("n", "<left>", "<nop>", { silent = true })
+    -- vim.keymap.set("n", "<right>", "<nop>", { silent = true })
 
     -- Clear search with <esc>
     vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true })
