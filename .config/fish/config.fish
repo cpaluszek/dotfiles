@@ -16,6 +16,8 @@ if status is-interactive
     abbr -a gpa git_pull_all
     abbr -a gsa git_switch_all
 
+    abbr -a cat bat
+
     abbr -a cdl cdsymlink
 
     abbr -a pipelines "bash ~/projects/DevOps/tools/check-pipelines"
@@ -31,6 +33,6 @@ if status is-interactive
     zoxide init fish | source
     fzf --fish | source
     starship init fish | source
-    # source "$HOME/.cargo/env.fish"
+    source "$HOME/.cargo/env.fish"
 end
 
