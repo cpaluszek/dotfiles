@@ -21,14 +21,17 @@ return {
             },
             pickers = {
                 find_files = {
-                    find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+                    find_command = { "rg", "--files", "-L", "--hidden", "--glob", "!**/.git/*" },
                 },
             },
         })
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+        vim.keymap.set('n', '<leader>ff', function()
+            builtin.find_files( { hidden = true} )
+        end, { desc="Telescope find files" })
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc='Telescope find buffers'})
+
 
         -- Note: useful?
         -- git files search
