@@ -23,25 +23,27 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer"
             },
             handlers = {
-                function (server_name)
+                function (server_name)  -- Default handler
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
                     }
                 end,
 
                 ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    -- set 'vim' as global
-                    lspconfig.lua_ls.setup {
+                    require('lspconfig').lua_ls.setup{
                         capabilities = capabilities,
                         settings = {
                             Lua = {
-                                runtime = { verison = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                                format = {
+                                    enable = true,
+                                    -- Put format options here
+                                    -- NOTE: the value should be STRING!!
+                                    defaultConfig = {
+                                        indent_style = "space",
+                                        indent_size = "2",
+                                    }
                                 },
                             },
                         }
@@ -52,7 +54,9 @@ return {
                     capabilities = capabilities,
                     settings = {
                         gopls = {
-                            gofumpt = true;
+                            gofumpt = true,
+                            expandWorkspaceToModule = true, -- Use the Go module as the workspace
+                            -- experimentalWorkspaceModule = true, -- Enable workspace module feature
                         }
                     }
                 }
@@ -60,7 +64,7 @@ return {
             },
         })
 
-
+        -- Completion setup
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
         local luasnip = require('luasnip')
 
