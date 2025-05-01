@@ -11,13 +11,6 @@ return {
             -- }
             -- TODO: check the remaining snacks
         },
-        scroll = {
-            enabled = true,
-            animate = {
-                duration = { step = 15, total = 250 },
-                easing = "linear",
-            },
-        },
         git = {
             enabled = true,
         }

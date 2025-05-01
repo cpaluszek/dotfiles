@@ -16,7 +16,7 @@ if status is-interactive
     set fish_greeting   # Disable greeting
 
     export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
-    export PATH="$PATH:/usr/local/go/bin"
+    export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
     switch (uname)
         case Darwin
