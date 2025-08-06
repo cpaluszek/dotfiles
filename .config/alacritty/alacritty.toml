@@ -1,34 +1,86 @@
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1"
+
+[general]
+live_config_reload = true
+working_directory = "None"
 import = [
-  # uncomment the flavour you want below:
-  # "~/.config/alacritty/catppuccin-latte.toml"
-  # "~/.config/alacritty/catppuccin-frappe.toml"
-  # "~/.config/alacritty/catppuccin-macchiato.toml"
-  "~/.config/alacritty/catppuccin-mocha.toml"
+    "~/.config/alacritty/themes/tokyo_night.toml"
 ]
 
 [window]
+dynamic_padding = true
+decorations = "full"
+title = "Alacritty"
+opacity = 0.85
+decorations_theme_variant = "Dark"
 
-opacity = 0.9
-blur = true
+[window.dimensions]
+columns = 100
+lines = 30
 
-padding.x = 10
-padding.y = 10
+[window.class]
+instance = "Alacritty"
+general = "Alacritty"
 
-decorations = "Full"
-decorations_theme_variant = "Light" # "Dark"
+[scrolling]
+history = 10000
+multiplier = 3
 
 [colors]
 draw_bold_text_with_bright_colors = true
 
 [font]
+size = 12
 
-normal.family = "JetBrainsMonoNL Nerd Font"
-# bold.family = ""
-# italic.family = ""
-# bold_italic.family = ""
+[font.normal]
+family = "monospace"
+style = "Regular"
 
-size = 12.0
+[font.bold]
+family = "monospace"
+style = "Bold"
 
-# Tip: for inspiration, look for values in the source code files of your favorite VS Code themes, and use the color picker in
-# Google to test colors before setting a value, or simply using an editor such as VS Code where colors are displayed in a
-# small box when a HEX is detected by the editor.
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
+
+[cursor]
+style = "Underline"
+vi_mode_style = "None"
+unfocused_hollow = true
+thickness = 0.15
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
