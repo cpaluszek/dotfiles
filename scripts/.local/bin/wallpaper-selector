@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+WALLPAPER_FOLDER="$HOME/Pictures/wallpapers"
+WALLPAPER_SCRIPT="set-wallpaper"
+ROFI_THEME="drun"
+THUMBNAIL_DIR="/home/noon/.cache/noon"
+
+if [[ ! -d "$WALLPAPER_FOLDER" ]]; then
+    echo "Error: Folder $WALLPAPER_FOLDER does not exists!"
+    exit 1
+fi
+
+# Get wallpapers
+mapfile -t wallpapers < <(find "$WALLPAPER_FOLDER" -type f  -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" -o -name "*.webp" | sort)
+
+if [[ ${#wallpapers[@]} -eq 0 ]]; then
+    notify-send "Error" "No wallpapers found in $WALLPAPER_FOLDER"
+    exit 1
+fi
+# Calculate columns based on screen width (simplified version)
+font_scale=10
+elm_width=$(((28 + 8 + 5) * font_scale))
+mon_x_res=$(xrandr | grep ' connected primary' | awk '{print $4}' | cut -d'x' -f1 || echo "1920")
+max_avail=$((mon_x_res - (4 * font_scale)))
+col_count=$((max_avail / elm_width))
+[[ $col_count -lt 1 ]] && col_count=3
+
+# Rofi theme override for grid layout with thumbnails
+r_override="window{width:100%;}
+listview{columns:${col_count};spacing:1em;lines:3;}
+element{
+    border-radius:15px;
+    orientation:horizontal;
+    padding:8px;
+    spacing:10px;
+    children: [element-icon, element-text];
+}
+element-icon{
+    size:8em;
+    border-radius:20px;
+    background-color:transparent;
+}
+element-text{
+    vertical-align:0.5;
+    padding:0.5em;
+    text-color:inherit;
+}"
+
+# Create entries array
+entries_array=()
+
+for wallpaper in "${wallpapers[@]}"; do
+    filename=$(basename "$wallpaper")
+    name_without_ext="${filename%.*}"
+    thumbnail="$THUMBNAIL_DIR/${name_without_ext}.sqre"
+ 
+    if [[ -f "$thumbnail" ]]; then
+        entries_array+=("${filename}\x00icon\x1f${thumbnail}\x00info\x1f${wallpaper}")
+    else
+        entries_array+=("${filename}\x00info\x1f${wallpaper}")
+    fi
+done
+
+# Join array with newlines (no trailing newline)
+IFS=$'\n'
+entries="${entries_array[*]}"
+unset IFS
+
+# Show rofi
+selected=$(echo -e "$entries" | rofi -dmenu -i -p "Wallpaper" \
+    -theme-str "${r_override}" \
+    -show-icons \
+    -theme selector)
+
+if [[ -n "$selected" ]]; then
+    "$WALLPAPER_SCRIPT" "$WALLPAPER_FOLDER/$selected"
+fi
+

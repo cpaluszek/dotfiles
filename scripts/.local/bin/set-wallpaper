@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+WALLPAPER_FOLDER="$HOME/Pictures/wallpapers"
+thmbDir=~/.cache/noon
+if [[ ! -d "$WALLPAPER_FOLDER" ]]; then
+    notify-send "Wallpaper" "Error: Folder $WALLPAPER_FOLDER does not exists!"
+    exit 1
+fi
+
+if [[ "$1" == "--random" || "$1" == "-r" ]]; then
+    wallpaper=$(find "$WALLPAPER_FOLDER" -type f -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" -o -name "*.webp" | shuf -n 1)
+
+    if [[ -z "$wallpaper" ]]; then
+        notify-send "Wallpaper" "No images found in $WALLPAPER_FOLDER"
+        exit 1
+    fi
+    swww img "$wallpaper" --transition-type outer --transition-pos top-right --transition-duration 1.5
+    magick "$wallpaper" -strip -scale 10% -blur 0x2 -resize 100% "${thmbDir}/wall.blur"
+    exit 0
+fi
+
+
+if [[ -n "$1" ]]; then
+    if [[ ! -f "$1" ]]; then
+       notify-send "Wallpaper" "File $1 not found"
+        exit 1
+    fi
+    swww img "$1" --transition-type outer --transition-pos top-right --transition-duration 1.5
+    magick "$1" -strip -scale 10% -blur 0x2 -resize 100% "${thmbDir}/wall.blur"
+    exit 0
+fi
+
