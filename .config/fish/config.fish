@@ -12,6 +12,11 @@ if status is-interactive
     export PATH="$PATH:/snap/bin:$HOME/.fzf/bin:$HOME/.local/bin"
     export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 
+
+    if test -f "$HOME/.cargo/env.fish"
+        source "$HOME/.cargo/env.fish"
+    end
+
     # Integrations
     zoxide init fish | source
     fzf --fish | source
