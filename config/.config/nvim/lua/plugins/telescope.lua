@@ -26,12 +26,14 @@ return {
                 grep_string = {
                     vimgrep_arguments = {
                         'rg',
+                        '--color=never',
                         '--no-heading',
                         '--with-filename',
-                        '-L',
+                        '--line-number',
+                        '--column',
                         '--smart-case',
                         '--hidden',
-                        '--glob=!**/.git/*'
+                        '--glob=!.git/*'
                     }
                 },
             },
