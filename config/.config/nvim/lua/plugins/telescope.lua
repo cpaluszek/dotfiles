@@ -23,6 +23,17 @@ return {
                 find_files = {
                     find_command = { "rg", "--files", "-L", "--hidden", "--glob", "!**/.git/*" },
                 },
+                grep_string = {
+                    vimgrep_arguments = {
+                        'rg',
+                        '--no-heading',
+                        '--with-filename',
+                        '-L',
+                        '--smart-case',
+                        '--hidden',
+                        '--glob=!**/.git/*'
+                    }
+                },
             },
         })
 
