@@ -6,10 +6,12 @@ if [[ -z "$1" ]]; then
 fi
 
 THEMES_DIR="$HOME/.config/noon/themes"
+mkdir -p "$HOME/.config/noon/current"
 CURRENT_THEME_DIR="$HOME/.config/noon/current/theme"
 
 THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
 THEME_PATH="$THEMES_DIR/$THEME_NAME"
+
 
 # Check if the theme exists
 if [[ ! -d "$THEME_PATH" ]]; then
