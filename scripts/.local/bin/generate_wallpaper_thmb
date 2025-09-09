@@ -18,15 +18,13 @@ process_image() {
     local wall_name=$(basename "$current_wall")
     wall_name="${wall_name%.*}"
 
-    if [[ -f "$thmbDir/${wall_name}.thmb" &&
-          -f "$thmbDir/${wall_name}.sqre" &&
-          -f "$thmbDir/${wall_name}.blur" ]]; then
+    if [[ -f "$thmbDir/${wall_name}.sqre" ]]; then
+          # -f "$thmbDir/${wall_name}.blur" ]]; then
         return
     fi
 
-    magick "${current_wall}" -strip -resize 1000 -gravity center -extent 1000 -quality 90 "${thmbDir}/${wall_name}.thmb"
     magick "${current_wall}" -strip -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${wall_name}.sqre"
-    magick "${current_wall}" -strip -scale 10% -blur 0x3 -resize 100% "${thmbDir}/${wall_name}.blur"
+    # magick "${current_wall}" -strip -scale 10% -blur 0x3 -resize 100% "${thmbDir}/${wall_name}.blur"
 }
 
 for ext in "${image_extensions[@]}"; do
