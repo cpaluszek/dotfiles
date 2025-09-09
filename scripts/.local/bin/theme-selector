@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-theme=$(theme-list | rofi -dmenu)
+theme=$(theme-list | rofi -dmenu -theme dmenu.rasi)
 theme-set "$theme"
