@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+theme=$(theme-list | rofi -dmenu)
+theme-set $theme
