@@ -4,7 +4,7 @@
 - fzf
 - lazygit
 - nvim
-
+- swayosd
 
 ## Rust
 - kanata

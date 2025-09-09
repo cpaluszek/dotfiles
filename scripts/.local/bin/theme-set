@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+  echo "Usage: theme-set <theme-name>" >&2
+  exit 1
+fi
+
+THEMES_DIR="$HOME/.config/noon/themes"
+CURRENT_THEME_DIR="$HOME/.config/noon/current/theme"
+
+THEME_NAME=$(echo "$1" | sed -E 's/<[^>]+>//g' | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+THEME_PATH="$THEMES_DIR/$THEME_NAME"
+
+# Check if the theme exists
+if [[ ! -d "$THEME_PATH" ]]; then
+    echo "Theme: $THEME_NAME does not exist in $THEME_DIR" >&2
+    exit 1
+fi
+
+# Update theme symlink
+ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
+
+# Change gnome modes
+if [[ -f ~/.config/omarchy/current/theme/light.mode ]]; then
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+else
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+fi
+
+# Change gnome icon theme color
+if [[ -f ~/.config/omarchy/current/theme/icons.theme ]]; then
+  gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/omarchy/current/theme/icons.theme)"
+else
+  gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"
+fi
+
+ln -snf "$CURRENT_THEME_DIR/btop.theme" ~/.config/btop/themes/current.theme
+ln -snf "$CURRENT_THEME_DIR/mako.ini" ~/.config/mako/config
+
+# Trigger alacritty config reload
+touch "$HOME/.config/alacritty/alacritty.toml"
+
+# Restart components to apply new theme
+pkill -SIGUSR2 btop
+hyprctl reload
+makoctl reload
+restart-waybar
+restart-swayosd
+# TODO: set wallpaper
