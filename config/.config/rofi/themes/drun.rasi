@@ -15,7 +15,7 @@ configuration {
 
 // Main //
 window {
-    height:                      40em;
+    height:                      30em;
     width:                       25em;
     transparency:                "real";
     fullscreen:                  false;
@@ -38,21 +38,9 @@ mainbox {
     background-color:            transparent;
 }
 
-
-// Inputs //
 inputbar {
-    enabled:                     true;
-    spacing:                     0em;
-    padding:                     4em;
-    children:                    [ "entry" ];
-    background-color:            @main-bg;
-    background-image:            url("~/.cache/noon/wall.blur", width);
-    border-radius:               1em 1em 0em 0em;
-}
-entry {
     enabled:                     false;
 }
-
 
 // Lists //
 listbox {
@@ -91,7 +79,6 @@ dummyb {
     background-color:            @main-bg;
     border-radius:               0em 0em 1em 1em;
 }
-
 
 // Elements //
 element {
