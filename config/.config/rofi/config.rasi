@@ -1,9 +1,3 @@
-/**
- * HyDE Rofi Configuration
- * Extracted standalone configuration from HyDE Project
- * Original: https://github.com/prasanthrangan/hyprdots
- */
-
 configuration {
     /* General settings */
     modi: "drun,run,filebrowser,window";

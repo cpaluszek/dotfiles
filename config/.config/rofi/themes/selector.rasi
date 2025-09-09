@@ -2,11 +2,9 @@ configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
-    // font:                        "JetBrainsMono Nerd Font 10";
 }
 
-@theme "~/.config/rofi/theme.rasi"
-
+@theme "~/.config/noon/current/theme/theme.rasi"
 
 // Main //
 window {

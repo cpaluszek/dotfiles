@@ -10,7 +10,7 @@ configuration {
     font:                        "JetBrainsMono Nerd Font 10";
 }
 
-@theme "~/.config/rofi/theme.rasi"
+@theme "~/.config/noon/current/theme/theme.rasi"
 
 
 // Main //
