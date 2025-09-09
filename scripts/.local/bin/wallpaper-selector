@@ -5,6 +5,8 @@ WALLPAPER_SCRIPT="set-wallpaper"
 ROFI_THEME="drun"
 THUMBNAIL_DIR="/home/noon/.cache/noon"
 
+generate-wallpaper-thmb
+
 if [[ ! -d "$WALLPAPER_FOLDER" ]]; then
     echo "Error: Folder $WALLPAPER_FOLDER does not exists!"
     exit 1
@@ -17,26 +19,27 @@ if [[ ${#wallpapers[@]} -eq 0 ]]; then
     notify-send "Error" "No wallpapers found in $WALLPAPER_FOLDER"
     exit 1
 fi
-# Calculate columns based on screen width (simplified version)
-font_scale=10
-elm_width=$(((28 + 8 + 5) * font_scale))
-mon_x_res=$(xrandr | grep ' connected primary' | awk '{print $4}' | cut -d'x' -f1 || echo "1920")
-max_avail=$((mon_x_res - (4 * font_scale)))
+
+# Dynamic grid calculation
+elm_width=400
+mon_x_res=$(xrandr | grep 'connected' | awk '{print $3}' | cut -d'x' -f1 || echo "1920")
+max_avail=$((mon_x_res - 50))
 col_count=$((max_avail / elm_width))
-[[ $col_count -lt 1 ]] && col_count=3
+[[ $col_count -lt 1 ]] && col_count=6
+line_count=4
 
 # Rofi theme override for grid layout with thumbnails
 r_override="window{width:100%;}
-listview{columns:${col_count};spacing:1em;lines:3;}
+listview{columns:${col_count};spacing:1em;lines:${line_count};}
 element{
     border-radius:15px;
     orientation:horizontal;
-    padding:8px;
-    spacing:10px;
+    padding:4px;
+    spacing:6px;
     children: [element-icon, element-text];
 }
 element-icon{
-    size:8em;
+    size:4em;
     border-radius:20px;
     background-color:transparent;
 }
