@@ -1,0 +1,35 @@
+/**
+ * HyDE Rofi Configuration
+ * Extracted standalone configuration from HyDE Project
+ * Original: https://github.com/prasanthrangan/hyprdots
+ */
+
+configuration {
+    /* General settings */
+    modi: "drun,run,filebrowser,window";
+    font: "JetBrainsMono Nerd Font 12";
+    show-icons: true;
+    icon-theme: "Tela-circle-dracula";
+    
+    /* Display names for different modi */
+    display-drun: " ";
+    display-run: " ";
+    display-filebrowser: " ";
+    display-window: " ";
+    
+    /* Format strings */
+    drun-display-format: "{name}";
+    window-format: "{w}{t}";
+    
+    /* Keybindings */
+    // kb-row-up: "Up,Control+k,Control+p";
+    // kb-row-down: "Down,Control+j,Control+n";
+    // kb-accept-entry: "Return,KP_Enter";
+    // kb-remove-to-eol: "Control+Shift+e";
+    // kb-mode-next: "Control+l,Tab";
+    // kb-mode-previous: "Control+h,ISO_Left_Tab";
+    // kb-cancel: "Escape,Control+c";
+}
+
+/* Import the color theme */
+@theme "theme.rasi"
