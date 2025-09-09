@@ -23,7 +23,7 @@ process_image() {
         return
     fi
 
-    magick "${current_wall}" -strip -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${wall_name}.sqre"
+    magick "${current_wall}" -strip -thumbnail 200x200^ -gravity center -extent 200x200 "${thmbDir}/${wall_name}.sqre"
     # magick "${current_wall}" -strip -scale 10% -blur 0x3 -resize 100% "${thmbDir}/${wall_name}.blur"
 }
 
