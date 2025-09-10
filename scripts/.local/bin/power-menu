@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Power menu options with icons
+options=" Lock
+󰍃 Logout
+ Shutdown
+ Suspend
+ Reboot"
+
+# Show rofi menu
+chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" \
+    -theme dmenu.rasi -theme-str 'window {height: 12em;}')
+
+# Execute based on selection
+case $chosen in
+    *"Lock"*)
+        hyprlock
+        ;;
+    *"Logout"*)
+        loginctl kill-session $XDG_SESSION_ID
+        ;;
+    *"Shutdown"*)
+        systemctl poweroff
+        ;;
+    *"Suspend"*)
+        systemctl suspend
+        ;;
+    *"Reboot"*)
+        systemctl reboot
+        ;;
+esac
+

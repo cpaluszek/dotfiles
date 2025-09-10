@@ -7,7 +7,7 @@ configuration {
     display-window:              " ";
     drun-display-format:         "{name}";
     window-format:               "{w}{t}";
-    font:                        "JetBrainsMono Nerd Font 10";
+    font:                        "JetBrainsMono Nerd Font 12";
 }
 
 @theme "~/.config/noon/current/theme/theme.rasi"
