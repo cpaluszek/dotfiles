@@ -1,0 +1,9 @@
+# Theme
+include = [
+    "~/.config/noon/current/theme/yazi.toml",
+]
+
+[opener]
+edit = [
+    { run = 'nvim $1', desc = "Edit in Neovim", block = true }
+]
