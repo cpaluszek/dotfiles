@@ -1,0 +1,34 @@
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "outer", "--transition-pos", "top-right", "--transition-duration", "1.5"]
+set = true
+
+[templates.waybar]
+input_path = './templates/colors.css'
+output_path = '~/.config/noon/current/matugen/colors.css'
+post_hook = 'restart-waybar'
+
+[templates.hyprland]
+input_path = './templates/hyprland-colors.conf'
+output_path = '~/.config/noon/current/matugen/hyprland.conf'
+post_hook = 'hyprctl reload'
+
+[templates.alacritty]
+input_path = './templates/alacritty.toml'
+output_path = '~/.config/noon/current/matugen/alacritty.toml'
+
+[templates.btop]
+input_path = './templates/btop.theme'
+output_path = '~/.config/btop/themes/btop.theme'
+
+# Then, add this line to the top of your ~/.config/gtk-3.0/gtk.css and ~/.config/gtk-4.0/gtk.css
+# @import 'colors.css';
+[templates.gtk3]
+input_path = './templates/gtk-colors.css'
+output_path = '~/config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = './templates/gtk-colors.css'
+output_path = '~/config/gtk-4.0/colors.css'
+
