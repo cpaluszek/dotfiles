@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ -z "$1" ]]; then
-  echo "Usage: theme-set <theme-name>" >&2
-  exit 1
+    echo "Usage: theme-set <theme-name>" >&2
+    exit 1
 fi
 
 THEMES_DIR="$HOME/.config/noon/themes"
@@ -23,19 +23,26 @@ fi
 ln -nsf "$THEME_PATH" "$CURRENT_THEME_DIR"
 
 # Change gnome modes
-if [[ -f ~/.config/omarchy/current/theme/light.mode ]]; then
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-light"
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+if [[ -f ~/.config/noon/current/theme/light.mode ]]; then
+    gsettings set org.gnome.desktop.interface color-scheme "default"
+    gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3"
+    sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=false/' ~/.config/gtk-3.0/settings.ini
+    sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=false/' ~/.config/gtk-4.0/settings.ini
 else
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+    gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark"
+    sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=true/' ~/.config/gtk-3.0/settings.ini
+    sed -i 's/gtk-application-prefer-dark-theme=.*/gtk-application-prefer-dark-theme=true/' ~/.config/gtk-4.0/settings.ini
 fi
 
+pkill -SIGUSR1 -f "gtk" 2>/dev/null || true
+
 # Change gnome icon theme color
-if [[ -f ~/.config/omarchy/current/theme/icons.theme ]]; then
-  gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/omarchy/current/theme/icons.theme)"
+if [[ -f ~/.config/noon/current/theme/icons.theme ]]; then
+    gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/noon/current/theme/icons.theme)"
+    gsettings set org.gnome.desktop.interface gtk-theme "$(<~/.config/noon/current/theme/icons.theme)"
 else
-  gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"
+    gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"
 fi
 
 ln -snf "$CURRENT_THEME_DIR/btop.theme" ~/.config/btop/themes/current.theme
