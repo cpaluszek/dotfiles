@@ -37,10 +37,13 @@ fi
 
 pkill -SIGUSR1 -f "gtk" 2>/dev/null || true
 
+# Change gnome gtk theme
+if [[ -f ~/.config/noon/current/theme/gtk.theme ]]; then
+    gsettings set org.gnome.desktop.interface gtk-theme "$(<~/.config/noon/current/theme/gtk.theme)"
+fi
 # Change gnome icon theme color
-if [[ -f ~/.config/noon/current/theme/icons.theme ]]; then
-    gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/noon/current/theme/icons.theme)"
-    gsettings set org.gnome.desktop.interface gtk-theme "$(<~/.config/noon/current/theme/icons.theme)"
+if [[ -f ~/.config/noon/current/theme/icon.theme ]]; then
+    gsettings set org.gnome.desktop.interface icon-theme "$(<~/.config/noon/current/theme/icon.theme)"
 else
     gsettings set org.gnome.desktop.interface icon-theme "Yaru-blue"
 fi
