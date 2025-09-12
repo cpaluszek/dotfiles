@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Wrapper for rofi run-mode: detect search prefixes, otherwise execute.
+
+cmd="$*"
+
+open_url() {
+  # Use xdg-open so your default browser is respected
+  xdg-open "$1" >/dev/null 2>&1 &
+}
+
+# Simple urlencode for spaces
+qp() { printf '%s' "$*" | sed 's/^[[:space:]]*//; s/[[:space:]]\+/+/g'; }
+
+case "$cmd" in
+  dd:*)
+    term="${cmd#dd:}"
+    open_url "https://duckduckgo.com/?q=$(qp "$term")"
+    ;;
+  gh:*)
+    term="${cmd#gh:}"
+    open_url "https://github.com/search?q=$(qp "$term")"
+    ;;
+  ghr:*)
+    # Optional: "ghr:user/repo query"
+    term="${cmd#ghr:}"
+    repo="${term%% *}"
+    rest="${term#* }"
+    if [ -n "$repo" ] && [ "$repo" != "$term" ] && [ -n "$rest" ]; then
+      open_url "https://github.com/$repo/search?q=$(qp "$rest")"
+    else
+      open_url "https://github.com/search?q=$(qp "$term")"
+    fi
+    ;;
+  *)
+    # Fallback: execute as a normal run command
+    # Use `setsid -f` to detach GUIs if you like: setsid -f sh -lc "$cmd"
+    sh -lc "$cmd"
+    ;;
+esac
+
