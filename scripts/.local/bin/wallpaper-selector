@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WALLPAPER_FOLDER="$HOME/Pictures/wallpapers"
-WALLPAPER_SCRIPT="set-wallpaper"
+WALLPAPER_SCRIPT="/home/noon/.local/bin/set-wallpaper"
 ROFI_THEME="drun"
 THUMBNAIL_DIR="/home/noon/.cache/noon"
 
@@ -76,6 +76,6 @@ selected=$(echo -e "$entries" | rofi -dmenu -i -p "Wallpaper" \
     -theme selector)
 
 if [[ -n "$selected" ]]; then
-    "$WALLPAPER_SCRIPT" "$WALLPAPER_FOLDER/$selected"
+    $WALLPAPER_SCRIPT "$WALLPAPER_FOLDER/$selected"
 fi
 
