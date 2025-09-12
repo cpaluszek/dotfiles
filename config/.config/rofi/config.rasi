@@ -3,7 +3,6 @@ configuration {
     modi: "drun,run,filebrowser,window";
     font: "JetBrainsMono Nerd Font 12";
     show-icons: true;
-    // icon-theme: "Tela-circle-dracula";
     
     /* Display names for different modi */
     display-drun: " ";
@@ -24,6 +23,3 @@ configuration {
     // kb-mode-previous: "Control+h,ISO_Left_Tab";
     // kb-cancel: "Escape,Control+c";
 }
-
-/* Import the color theme */
-@theme "theme.rasi"
