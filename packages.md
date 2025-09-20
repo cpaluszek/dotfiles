@@ -11,6 +11,9 @@
 - ripgrep
 - fd
 - bat
+- tmux
+- swww
+- hyprlock
 
 ## Rust
 - kanata
