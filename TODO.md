@@ -1,9 +1,10 @@
 - Temp sensor
 - Power sensor
 
+rofi icon theme
+
 Why uwsm?
 
-Test walker
-
-# Idle + lock
-- remove swaylock
+# Test
+- blueberry
+- Impala TUI
