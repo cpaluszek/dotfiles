@@ -5,7 +5,7 @@ return {
         require("notify").setup({
         })
 
-        vim.notify = require("notify")
+        -- vim.notify = require("notify")
     end
 }
 
