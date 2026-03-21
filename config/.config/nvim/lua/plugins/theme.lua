@@ -80,11 +80,20 @@ return {
         end,
     },
     {
-        "EdenEast/nightfox.nvim",
+        "edeneast/nightfox.nvim",
         config = function()
             require('nightfox').setup({
                 transparent = true,
                 theme = "wave",
+            })
+        end,
+    },
+    {
+        "vague-theme/vague.nvim",
+        priority = 1000,
+        config = function()
+            require('vague').setup({
+                transparent = true,
             })
         end,
     },
@@ -190,6 +199,13 @@ return {
                         colorscheme = "dawnfox",
                         before = [[
                             vim.opt.background = "light"
+                        ]],
+                    },
+                    {
+                        name = "Vague",
+                        colorscheme = "vague",
+                        before = [[
+                            vim.opt.background = "dark"
                         ]],
                     }
                 },
