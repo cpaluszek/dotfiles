@@ -5,3 +5,4 @@
 - Use `fdfind` instead of `find` for file search
 - Use `rg` instead of `grep` for content search
 - Use `mise run <task>` instead of `make <target>` in projects that have a `mise.toml`
+- Use `bun` instead of `npm` or `npx` (use `bunx` instead of `npx`)

@@ -2,5 +2,46 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "0"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(mise *)",
+      "Bash(fdfind *)",
+      "Bash(rg *)",
+      "Bash(jq *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "file=$(jq -r '.tool_input.file_path // empty'); [[ \"$file\" == *.go ]] && gofmt -w \"$file\" || true"
+          },
+          {
+            "type": "command",
+            "command": "file=$(jq -r '.tool_input.file_path // empty'); [[ \"$file\" == *.ts || \"$file\" == *.tsx ]] && bunx eslint --fix \"$file\" 2>/dev/null || true",
+            "statusMessage": "ESLint fixing..."
+          },
+          {
+            "type": "command",
+            "command": "file=$(jq -r '.tool_input.file_path // empty'); if [[ \"$file\" == *.ts || \"$file\" == *.tsx ]]; then dir=$(dirname \"$file\"); root=$(git -C \"$dir\" rev-parse --show-toplevel 2>/dev/null); [[ -f \"$root/apps/web/tsconfig.json\" ]] && cd \"$root/apps/web\" && bun run tsc --noEmit 2>&1 || true; fi",
+            "statusMessage": "Type checking..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send 'Claude Code' 'Task finished' 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
   }
 }
