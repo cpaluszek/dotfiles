@@ -8,3 +8,6 @@ Why uwsm?
 # Test
 - blueberry
 - Impala TUI
+
+# AI
+- Claude status line: https://github.com/ALT-F4-LLC/dotfiles.vorpal/blob/main/src/user/statusline.sh
