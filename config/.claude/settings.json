@@ -5,10 +5,25 @@
   },
   "permissions": {
     "allow": [
-      "Bash(mise *)",
+      "Bash(bun run *)",
+      "Bash(bun test *)",
+      "Bash(cat *)",
+      "Bash(docker images *)",
+      "Bash(docker logs *)",
+      "Bash(docker ps *)",
       "Bash(fdfind *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git status *)",
+      "Bash(go test *)",
+      "Bash(go version *)",
+      "Bash(gofmt *)",
+      "Bash(jq *)",
+      "Bash(make *)",
+      "Bash(mise *)",
       "Bash(rg *)",
-      "Bash(jq *)"
+      "Bash(tail *)",
+      "Bash(tree *)"
     ]
   },
   "hooks": {
